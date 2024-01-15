@@ -5,10 +5,7 @@ import com.demo.service.AppService;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/app")
@@ -23,5 +20,10 @@ public class AppController {
     public ResponseEntity<App> saveData(@RequestBody App app){
         App savedApp = appService.saveAppData(app);
         return new ResponseEntity<>(savedApp, HttpStatus.CREATED);
+    }
+    @GetMapping
+    public ResponseEntity<App> getData(@RequestParam Integer id){
+        App savedApp = appService.getData(id);
+        return new ResponseEntity<>(savedApp, HttpStatus.OK);
     }
 }
